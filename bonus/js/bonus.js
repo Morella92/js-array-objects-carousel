@@ -22,7 +22,13 @@ const slides = [
     }
 ]
 
+// intervallo di tempo in millisecondi
+const autoplayInterval = 3000
+
 let activeSlide = 0;
+
+// Variabile per memorizzare l'id del timer
+let autoplayTimer = null
 
 //Recupero dal DOM il carosello
 const carousel = document.querySelector('.carousel')
@@ -41,7 +47,7 @@ for (let i = 0; i < slides.length; i++) {
     }
 
     const domElement =
-    `<div class="${addClass}">
+        `<div class="${addClass}">
         <img src="${images.image}" alt="">
         <div class = "image-description">
             <h2>${images.title}</h2>
@@ -67,6 +73,9 @@ console.log(leftArrow)
 // Agganciamo gli eventi alle frecce
 rightArrow.addEventListener('click', function () {
     console.log('click')
+
+    // ferma l'autoplay quando l'utente interagisce con le frecce
+    stopAutoplay()
 
     let currentSlide = citySlides.length - 1
     console.log(currentSlide)
@@ -95,6 +104,9 @@ rightArrow.addEventListener('click', function () {
 leftArrow.addEventListener('click', function () {
     console.log('click')
 
+    // ferma l'autoplay quando l'utente interagisce con le frecce
+    stopAutoplay()
+
     // Nascondo la slide attiva
     console.log(citySlides[activeSlide])
     citySlides[activeSlide].classList.remove('active')
@@ -115,3 +127,38 @@ leftArrow.addEventListener('click', function () {
     citySlides[activeSlide].classList.add('active')
 })
 
+// avvia l'autoplay all'inizio
+startAutoplay()
+
+
+
+
+// Funzione per cambiare la slide attiva
+function nextSlide() {
+
+    citySlides[activeSlide].classList.remove('active')
+
+    activeSlide++
+    
+    if (activeSlide === citySlides.length) {
+        activeSlide = 0;
+    }
+
+    citySlides[activeSlide].classList.add('active')
+
+}
+
+// avvia l'autoplay
+function startAutoplay() {
+    if (autoplayTimer === null) {
+        autoplayTimer = setInterval(nextSlide, autoplayInterval);
+    }
+}
+
+// ferma l'autoplay
+function stopAutoplay() {
+    if (autoplayTimer !== null) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+    }
+}
