@@ -1,23 +1,23 @@
-img{
+img {
     width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
     object-position: center;
 }
 
-.slide{
+.slide {
     display: none;
 }
 
-.slide.active{
+.slide.active {
     display: block;
 }
 
-.carousel{
+.carousel {
     position: relative;
 }
 
-.arrows{
+.arrows {
     font-size: 30px;
     color: white;
     position: absolute;
@@ -25,10 +25,21 @@ img{
     transform: translateY(-50%);
 }
 
-.arrow-left{
+.arrow-left {
     left: 20px;
 }
 
-.arrow-right{
+.arrow-right {
     right: 20px;
+}
+
+.image-description {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    background-color: rgba(107, 86, 86, 0.7);
 }

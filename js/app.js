@@ -1,13 +1,37 @@
 console.log('Carousel Object exercise')
 
-let slides = [  
-'./img/Barcellona.jpg',
-'./img/Berlino.jpg',
-'./img/Londra.jpg',
-'./img/Parigi.jpg',
-'./img/Roma.jpg'
-]
-console.log(slides)
+// let slides = [  
+// './img/Barcellona.jpg',
+// './img/Berlino.jpg',
+// './img/Londra.jpg',
+// './img/Parigi.jpg',
+// './img/Roma.jpg'
+// ]
+// console.log(slides)
+
+const slides = [
+    {
+        image: './img/Barcellona.jpg',
+        title: 'Capital of Spain',
+        text: 'Park Guell',
+    }, {
+        image: './img/Berlino.jpg',
+        title: 'Capital of Germany',
+        text: 'Porta di Brandeburgo',
+    }, {
+        image: './img/Londra.jpg',
+        title: 'Capital of England',
+        text: 'Tower Bridge',
+    }, {
+        image: './img/Parigi.jpg',
+        title: 'Capital of France',
+        text: 'Torre Eiffel',
+    }, {
+        image: './img/Roma.jpg',
+        title: 'Capital of Italy',
+        text: 'Colosseo',
+    }
+];
 
 let activeSlide = 0
 
@@ -15,25 +39,29 @@ let activeSlide = 0
 const carousel = document.querySelector('.carousel')
 console.log(carousel)
 
-for (let i = 0; i < slides.length; i++){
+for (let i = 0; i < slides.length; i++) {
 
     let images = slides[i]
     console.log(images)
 
     let addClass = 'slide'
 
-    if (i === activeSlide){
+    if (i === activeSlide) {
 
-        addClass += 'active'
+        addClass += ' active'
     }
 
-    const domElement = 
+    const domElement =
     `<div class = "${addClass}">
-        <img src = "${images}" alt= "">
+        <img src = "${images.image}" alt= "">
+        <div class = "image-description">
+            <h2>${images.title}</h2>
+            <p>${images.text}</p>
+        </div>
     </div>`
 
     carousel.innerHTML += domElement
-    
+
 }
 
 //Recupero immagini dal carosello
@@ -47,33 +75,21 @@ console.log(rightArrow)
 const leftArrow = document.getElementById('arrow-left')
 console.log(leftArrow)
 
-
-
-// let citySlides = document.createElement('div')
-// console.log(citySlides)
-// citySlides.classList.add('.slide')
-// let slideContent = document.createElement('img')
-// console.log(slideContent)
-// slideContent.src = slides [activeSlide]
-// citySlides.appendChild(slideContent)
-// carousel.appendChild(citySlides)
-//document.body.prepend(carousel)
-
 // Agganciamo gli eventi alle frecce
-rightArrow.addEventListener('click', function(){
+rightArrow.addEventListener('click', function () {
     console.log('click')
-    
+
     let currentSlide = citySlides.length - 1
-    console.log (currentSlide)
+    console.log(currentSlide)
 
     //Nascondo la slide attiva
     console.log(citySlides[activeSlide])
     citySlides[activeSlide].classList.remove('active')
 
-    if(activeSlide < currentSlide){
+    if (activeSlide < currentSlide) {
 
         activeSlide += 1
-    }else{
+    } else {
 
         activeSlide = 0
     }
@@ -84,17 +100,17 @@ rightArrow.addEventListener('click', function(){
 
 })
 
-leftArrow.addEventListener('click', function(){
+leftArrow.addEventListener('click', function () {
     console.log('click')
 
     // Nascondo la slide attiva
     console.log(citySlides[activeSlide])
     citySlides[activeSlide].classList.remove('active')
 
-    if(activeSlide > 0){
+    if (activeSlide > 0) {
 
         activeSlide--
-    }else{
+    } else {
 
         activeSlide = citySlides.length - 1
     }
